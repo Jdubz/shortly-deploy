@@ -1,9 +1,7 @@
 var path = require('path');
 var knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: path.join(__dirname, '../db/shortly.sqlite')
-  }
+  client: 'pg',
+  connection: process.env.PG_CONNECTION_STRING
 });
 var db = require('bookshelf')(knex);
 
