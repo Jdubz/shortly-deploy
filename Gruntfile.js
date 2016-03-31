@@ -112,6 +112,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', ['concat', 'shell: prodServer']);
+  grunt.registerTask('deploy', ['concat', 'shell']);
 
 };

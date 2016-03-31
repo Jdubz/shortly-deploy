@@ -6,9 +6,9 @@
   });
 </script>
 
-<% if (process.env.PROD) { %>
+<% if (process.env.PROD) { console.log("yes prod"); %>
 <script src='/client/allemjs.js'></script>
-<% } else { %>
+<% } else { console.log("not prod"); %>
 <script src='/client/app.js'></script>
 <script src='/client/link.js'></script>
 <script src='/client/links.js'></script>
