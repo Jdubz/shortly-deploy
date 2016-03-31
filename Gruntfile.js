@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     concat: {
       options: {
         seperator: ';'
@@ -99,8 +100,6 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('livePush', ['shell: prodServer']);
-
   grunt.registerTask('serve', ['nodemon']);
 
   grunt.registerTask('build', ['concat', 'uglify']);
@@ -113,9 +112,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // add your deploy tasks here
-  ]);
-
+  grunt.registerTask('deploy', ['concat', 'shell: prodServer']);
 
 };
