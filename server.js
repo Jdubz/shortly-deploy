@@ -1,10 +1,8 @@
 var app = require('./server-config.js');
 
-var port = 7995;
+var port = 8000;
 console.log(port);
 
 app.listen(port);
 
 console.log('Server now listening on port ' + port);
-
-// did this change?
