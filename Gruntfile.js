@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        seperator: ';'
+      },
+      dist: {
+        src: ['public/client/**/*.js'],
+        dest: 'public/client/allemjs.js'
+      }
     },
 
     mochaTest: {
@@ -20,8 +27,7 @@ module.exports = function(grunt) {
       }
     },
 
-    uglify: {
-    },
+    uglify: {},
 
     eslint: {
       target: [
@@ -50,8 +56,7 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      prodServer: {
-      }
+      prodServer: {command: 'git push live master'}
     },
   });
 
@@ -80,6 +85,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
+
       // add your production server task here
     }
     grunt.task.run([ 'server-dev' ]);
@@ -93,8 +99,11 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('livePush', ['shell: prodServer']);
+
+  grunt.registerTask('serve', ['nodemon']);
+
+  grunt.registerTask('build', ['concat', 'uglify']);
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {

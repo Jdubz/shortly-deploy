@@ -6,6 +6,9 @@
   });
 </script>
 
+<% if process.env.PROD %>
+<script src='/client/allemjs.js'></script>
+<% else %>
 <script src='/client/app.js'></script>
 <script src='/client/link.js'></script>
 <script src='/client/links.js'></script>
