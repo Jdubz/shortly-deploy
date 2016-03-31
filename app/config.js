@@ -1,14 +1,8 @@
 var path = require('path');
-var knex = require('knex')({
-  client: 'sqlite3',
-  connection: {filename: path.join(__dirname, '../db/shortly.sqlite')}
-});
-var db = require('bookshelf')(knex);
+var db = require('mongoose');
 
-db.knex.schema.hasTable('urls').then(function(exists) {
-  if (!exists) {
-    db.knex.schema.createTable('urls', function (link) {
-      link.increments('id').primary();
+var urlSchema = new db.schema({
+      id: {type: Number, required: true, unique: true },
       link.string('url', 255);
       link.string('baseUrl', 255);
       link.string('code', 100);
@@ -21,7 +15,7 @@ db.knex.schema.hasTable('urls').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('users').then(function(exists) {
+var userSchema = new db.schema(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
